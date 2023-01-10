@@ -1,4 +1,5 @@
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 export const ReviewCard = (review) => {
   return (
@@ -8,9 +9,13 @@ export const ReviewCard = (review) => {
         alt={`${review.title} cover Image`}
         className="reviewPic"
       />
-       <h3>{review.title}</h3>
-      <p className='author'>{review.owner}</p>
-      <Button variant='dark button' className='Read-More'>Read More</Button>{' '}
+      <h3>{review.title}</h3>
+      <p className="author">{review.owner}</p>
+      <Link to={`/games/${review.review_id}`}>
+        <Button variant="dark button" className="Read-More">
+          Read More
+        </Button>{" "}
+      </Link>
     </li>
   );
 };

@@ -113,7 +113,6 @@ select {
   }
 }
 
-
 .header-content {
   display: inline;
   justify-content: space-between;
@@ -149,7 +148,7 @@ select {
   padding-left: 0;
 }
 
-h2 {
+.list-title {
   font-size: 35px;
   letter-spacing: 0em;
   font-weight: 1000;
@@ -204,9 +203,8 @@ h3 {
 .Nav {
   padding: 5%;
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
 }
-
 
 /* ------------------------ Dropdown ---------------------- */
 #dropdown-basic.btn {
@@ -231,20 +229,20 @@ h3 {
 }
 @media screen and (max-width: 450px) {
   #dropdown-basic.btn {
-  font-size: 14px;
+    font-size: 14px;
   }
 }
 
 @media screen and (min-width: 450px) {
   #dropdown-basic.btn {
     font-size: 16px;
-    }
+  }
 }
 
 @media screen and (min-width: 600px) {
   #dropdown-basic.btn {
     font-size: 18px;
-    }
+  }
 }
 
 #dropdown-basic.btn:hover {
@@ -252,6 +250,116 @@ h3 {
   background-color: #333333;
   border-color: none;
 }
+
+/* ------------------------ SingleReview---------------------- */
+.genre {
+  padding: 0px;
+  margin: 0px;
+  font-size: 12px;
+  color: #d2042d;
+  font-weight: 1000;
+  letter-spacing: 0.03em;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+.review-title {
+  font-size: 35px;
+  letter-spacing: 0em;
+  font-weight: 1000;
+  padding-top: 3%;
+  padding-bottom: 7%;
+  margin-bottom: 0px;
+  color: #333333;
+  text-align: left;
+}
+
+.review-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding: 10%;
+}
+
+.emphasise {
+  color: #d2042d;
+}
+
+.sub-info {
+  font-size: 14px;
+  margin-bottom: 2%;
+}
+
+.body {
+  padding: 10%;
+  text-align: left;
+  margin: 0px
+}
+
+
+/* ------------------------ Votes ---------------------- */
+.box{
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 9% ;
+  border-radius: 5vh;
+  background-color: white;
+  box-shadow: 0px 5px 25px #ededed;
+}
+
+.votes-title{
+  font-size: 16px;
+  font-weight: 600;
+
+}
+
+.vote-button{
+  margin-left:2%;
+  margin-right:2%;
+  font-size: 14px;
+  font-weight: 1000;
+  box-shadow: 2px 3px 15px #e0e0e0;
+
+}
+
+/* ------------------------ Write Comment Card ---------------------- */
+
+
+.titles{
+  margin-top: 10%;
+  padding: 9%;
+  text-align: center;
+  margin-bottom: 0
+}
+
+form.box {
+  text-align: left;
+  color:#666666;
+  font-size: 14px;
+  margin-bottom: 10%;
+}
+#formBasicEmail.form-control {
+  font-size: 13px;
+  color:#a8a8a8
+}
+
+#formBasicComment.form-control {
+  font-size: 13px;
+  color:#a8a8a8
+}
+#formBasicComment{
+  padding-bottom: 70px;
+}
+.question {
+  font-size: 16px;
+  font-weight: 700;
+  color:#333333;
+  margin-bottom: 10%;
+}
+
+/* ------------------------ App ---------------------- */
 
 .App {
   text-align: center;
