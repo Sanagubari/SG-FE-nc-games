@@ -31,3 +31,11 @@ export const fetchComments = (reviewId) => {
       return res.data.comments;
     });
 };
+
+export const patchVoteByReviewID = (reviewId, votes) => {
+  return axios
+    .patch(`https://sg-nc-games.onrender.com/api/reviews/${reviewId}`, {inc_votes: votes})
+    .then((res) => {
+      return res.data.review;
+    });
+};

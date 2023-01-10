@@ -35,11 +35,14 @@ export const SingleReview = () => {
     <main>
       <Review review={review} />
 
-    
-      <Votes className="votes titles" votes={review.votes} />
+      <Votes
+        className="votes titles"
+        votes={review.votes}
+        reviewId={review_id}
+      />
 
       <h3 className="titles">Comments</h3>
-      
+
       <WriteComment />
       <CommentCards reviewId={review_id} />
     </main>
