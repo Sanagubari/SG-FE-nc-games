@@ -22,7 +22,7 @@ export const SingleReview = () => {
         setIsError(true);
         setIsLoading(false);
       });
-  });
+  }, [review_id]);
 
   if (isLoading) {
     return <p>Loading...</p>;

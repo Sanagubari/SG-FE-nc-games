@@ -27,7 +27,7 @@ export const CommentCards = ({ reviewId }) => {
     return <p>Error</p>;
   }
   return (
-    <div>
+    <ul>
       {comments.map((comment) => {
         let date = comment.created_at
           .slice(0, 10)
@@ -36,14 +36,14 @@ export const CommentCards = ({ reviewId }) => {
 
         let realDate = `${date[2]} ${date[1]} ${date[0]}`;
         return (
-          <div key={comment.comment_id}>
+          <li key={comment.comment_id}>
             <p>{comment.body}</p>
             <h4>{comment.author}</h4>
             <p>{realDate}</p>
             <CommentVotes votes={comment.votes} />
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

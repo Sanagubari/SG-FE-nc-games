@@ -9,7 +9,7 @@ export const Votes = ({ votes }) => {
       </Button>{" "}
       <Button className="vote-button" variant="dark">
         Up Vote
-      </Button>{" "}
+      </Button>
     </div>
   );
 };
