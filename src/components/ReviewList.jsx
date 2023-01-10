@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchReviews } from "../utils/api";
-
+import { NavBar } from "./NavBar";
 import { ReviewCard } from "./ReviewCard";
 
 
@@ -11,9 +11,9 @@ export const ReviewList = () => {
 
   useEffect(() => {
     fetchReviews()
-      .then((response) => {
+      .then((allReviews) => {
         setIsLoading(false);
-        setReviews(response);
+        setReviews(allReviews);
       })
       .catch((err) => {
         setIsError(true);
@@ -29,7 +29,7 @@ export const ReviewList = () => {
   }
   return (
     <main>
-
+      <NavBar />
       <h2 className="list-title">Latest Reviews</h2>
       <ul className="cardList">
         {reviews.map((review) => {
