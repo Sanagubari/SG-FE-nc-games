@@ -26,15 +26,15 @@ export const Votes = ({ votes, reviewId }) => {
   }
 
   return (
-    <div className="">
+    <div>
       <p className="votes-title">
         Total votes: <b className="emphasise">{votes + voteChange}</b>
       </p>
       <Button onClick={decVote} className="vote-button" variant="light">
-        Down Vote
+        👎   
       </Button>{" "}
       <Button onClick={incVote} className="vote-button" variant="dark">
-        Up Vote
+         👍
       </Button>
     </div>
   );
