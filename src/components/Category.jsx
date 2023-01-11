@@ -1,9 +1,20 @@
 import { fetchCategories } from "../utils/api";
 import { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useSearchParams } from "react-router-dom";
 
-export const CategoryBar = () => {
+export const CategoryBar = ({ setCategoryChosen, setSearchParams, searchParams }) => {
   const [categories, setCategories] = useState([]);
+
+  // let [searchParams, setSearchParams] = useSearchParams();
+
+  const setCategory = (category) => {
+    const newParams = new URLSearchParams(searchParams);
+
+    newParams.set("category", category);
+    setSearchParams(newParams);
+    
+  };
 
   useEffect(() => {
     fetchCategories()
@@ -20,12 +31,27 @@ export const CategoryBar = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
+        <Dropdown.Item
+          onClick={() => {
+            setSearchParams();
+            setCategoryChosen(null);
+          }}
+        >
+          All
+        </Dropdown.Item>
+
         {categories.map((category) => {
           const capitlised =
             category.slug.charAt(0).toUpperCase() + category.slug.slice(1);
           const categoryName = capitlised.replace(/-/g, " ");
           return (
-            <Dropdown.Item key={category.slug} href="#/action-1">
+            <Dropdown.Item
+              key={category.slug}
+              onClick={() => {
+                setCategory(category.slug);
+                setCategoryChosen(category.slug);
+              }}
+            >
               {categoryName}
             </Dropdown.Item>
           );

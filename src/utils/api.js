@@ -1,8 +1,11 @@
 import axios from "axios";
 
-export const fetchReviews = () => {
+export const fetchReviews = (category) => {
+
   return axios
-    .get("https://sg-nc-games.onrender.com/api/reviews")
+    .get("https://sg-nc-games.onrender.com/api/reviews", {
+      params: { category: category },
+    })
     .then((res) => {
       return res.data.reviews;
     });
