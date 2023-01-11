@@ -5,6 +5,7 @@ import { Votes } from "./Votes";
 import { WriteComment } from "./WriteComment";
 import { CommentCards } from "./CommentCards";
 import { Review } from "./Review";
+import { CircularProgress } from "@mui/material";
 
 export const SingleReview = () => {
   const [isError, setIsError] = useState(false);
@@ -25,7 +26,7 @@ export const SingleReview = () => {
   }, [review_id]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <CircularProgress className="loading"/>;
   }
   if (isError) {
     return <p>Error</p>;
@@ -35,12 +36,16 @@ export const SingleReview = () => {
     <main>
       <Review review={review} />
 
-    
-      <Votes className="votes titles" votes={review.votes} />
+      <Votes
+        className="votes titles"
+        votes={review.votes}
+        reviewId={review_id}
+      />
 
       <h3 className="titles">Comments</h3>
-      
-      <WriteComment />
+
+      <WriteComment reviewId={review_id} />
+
       <CommentCards reviewId={review_id} />
     </main>
   );

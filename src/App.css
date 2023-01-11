@@ -152,13 +152,13 @@ select {
   font-size: 35px;
   letter-spacing: 0em;
   font-weight: 1000;
-  padding-top: 3%;
+  padding-top: 5%;
   padding-bottom: 7%;
   color: #333333;
 }
 
 .card {
-  box-shadow: 2px 5px 25px #d2d2d2;
+  box-shadow: 0px 5px 25px #ededed;
   border-radius: 5vh;
   margin: 0.5vw;
   margin-bottom: 3vh;
@@ -178,7 +178,7 @@ select {
   font-weight: 600;
 }
 .Read-More {
-  box-shadow: 0px 3px 12px #afafaf;
+  box-shadow: 0px 5px 25px #ededed;
 }
 
 h3 {
@@ -201,7 +201,7 @@ h3 {
 /* ------------------------ Nav ---------------------- */
 
 .Nav {
-  padding: 5%;
+  padding: 6%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -217,7 +217,7 @@ h3 {
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-  box-shadow: 2px 5px 25px #d2d2d2;
+  box-shadow: 0px 5px 25px #ededed;
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
@@ -252,6 +252,7 @@ h3 {
 }
 
 /* ------------------------ SingleReview---------------------- */
+
 .genre {
   padding: 0px;
   margin: 0px;
@@ -295,68 +296,120 @@ h3 {
 .body {
   padding: 10%;
   text-align: left;
-  margin: 0px
+  margin: 0px;
 }
 
-
 /* ------------------------ Votes ---------------------- */
-.box{
+.box {
   margin-left: 10%;
   margin-right: 10%;
-  padding: 9% ;
+  padding: 9%;
   border-radius: 5vh;
   background-color: white;
   box-shadow: 0px 5px 25px #ededed;
 }
 
-.votes-title{
+.votes-title {
+  margin-top: 5%;
   font-size: 16px;
   font-weight: 600;
-
 }
 
-.vote-button{
-  margin-left:2%;
-  margin-right:2%;
+.vote-button {
+  margin-left: 2%;
+  margin-right: 2%;
   font-size: 14px;
   font-weight: 1000;
   box-shadow: 2px 3px 15px #e0e0e0;
-
 }
 
 /* ------------------------ Write Comment Card ---------------------- */
 
-
-.titles{
+.titles {
   margin-top: 10%;
   padding: 9%;
   text-align: center;
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 
 form.box {
   text-align: left;
-  color:#666666;
+  color: #666666;
   font-size: 14px;
-  margin-bottom: 10%;
+  margin-bottom: 20%;
 }
-#formBasicEmail.form-control {
+#formBasicUsername.form-control {
   font-size: 13px;
-  color:#a8a8a8
+  color: #333333;
 }
 
 #formBasicComment.form-control {
   font-size: 13px;
-  color:#a8a8a8
+  color: #333333;
 }
-#formBasicComment{
-  padding-bottom: 70px;
+textarea.form-control {
+  font-size: 13px;
+  color: #a8a8a8;
 }
+
 .question {
   font-size: 16px;
   font-weight: 700;
-  color:#333333;
+  color: #333333;
   margin-bottom: 10%;
+}
+
+.alert {
+  margin-top: 8%;
+  margin-bottom: 0;
+}
+/* ------------------------ CommentCard ---------------------- */
+li {
+  list-style: none;
+
+  padding-left: 15%;
+  padding-right: 15%;
+  text-align: left;
+}
+ul {
+  padding: 0;
+}
+
+.comment {
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 10%;
+  padding-bottom: 15%;
+  margin: 0;
+}
+
+#comment-sub-info {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+.comment-vote-button {
+  margin-top: 2%;
+  margin-right: 5%;
+  font-size: 14px;
+  font-weight: 1000;
+  box-shadow: 2px 3px 15px #e0e0e0;
+}
+
+.comment-vote {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#divider {
+  margin-top: 15%;
+  margin-bottom: 15%;
+  border-color: #ababab;
 }
 
 /* ------------------------ App ---------------------- */
