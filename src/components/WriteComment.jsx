@@ -8,28 +8,27 @@ export const WriteComment = ({ reviewId }) => {
   const [newComment, setNewComment] = useState("");
   const [success, setSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isPosted, setIsPosted] = useState(true)
+  const [isPosted, setIsPosted] = useState(true);
 
   const handleSubmit = (event) => {
-    setIsPosted(false)
+    setIsPosted(false);
     event.preventDefault();
     postComment(newComment, "jessjelly", reviewId)
       .then(() => {
         setNewComment("");
         setSuccess(true);
         setIsError(false);
-        setIsPosted(true)
+        setIsPosted(true);
       })
       .catch((err) => {
         setIsError(true);
         setSuccess(false);
-        setIsPosted(true)
+        setIsPosted(true);
       });
   };
 
-
   return (
-    <Form className="box" onSubmit={handleSubmit}>
+    <Form className="box" onSubmit={handleSubmit} noValidate>
       <p className="question">What are your thoughts?</p>
       <Form.Group className="mb-3" controlId="exampleComment.ControlTextarea1">
         <Form.Control
@@ -40,11 +39,42 @@ export const WriteComment = ({ reviewId }) => {
           value={newComment}
         />
       </Form.Group>
-      {isPosted ? <Button variant="dark" type="submit" className="button"> Post </Button> : <Button variant="dark" type="submit" className="button" disabled> Post </Button>  }
+      {isPosted && newComment !== "" ? (
+        <Button variant="dark" type="submit" className="button">
+          {" "}
+          Post{" "}
+        </Button>
+      ) : (
+        <Button variant="dark" type="submit" className="button" disabled>
+          {" "}
+          Post{" "}
+        </Button>
+      )}
 
-  
-      {success ? <Alert onClose={() => {setSuccess(false)}} className="alert" severity="success"> Comment posted </Alert> : null }
-      {isError ? <Alert onClose={() => {setIsError(false)}} className="alert" severity="error"> Error, something went wrong </Alert> : null }
+      {success ? (
+        <Alert
+          onClose={() => {
+            setSuccess(false);
+          }}
+          className="alert"
+          severity="success"
+        >
+          {" "}
+          Comment posted{" "}
+        </Alert>
+      ) : null}
+      {isError ? (
+        <Alert
+          onClose={() => {
+            setIsError(false);
+          }}
+          className="alert"
+          severity="error"
+        >
+          {" "}
+          Error, something went wrong{" "}
+        </Alert>
+      ) : null}
     </Form>
   );
 };
