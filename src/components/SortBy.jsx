@@ -9,6 +9,7 @@ export const SortBy = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState()
 
+
   const sortByQuery = searchParams.get("sort_by");
 
   const setSortByQuery = (sortByQuery) => {
@@ -37,13 +38,6 @@ export const SortBy = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item
-          onClick={() => {
-            setSortByQuery("created_at");
-          }}
-        >
-          Date (default)
-        </Dropdown.Item>
         {titles.map((title) => {
           const capitlised = title.charAt(0).toUpperCase() + title.slice(1);
           const titleName = capitlised.replace(/_/g, " ");
@@ -55,7 +49,7 @@ export const SortBy = () => {
                 setSortByQuery(title);
               }}
             >
-              {titleName}
+              {titleName === 'Created at' ? 'Date (default)' :titleName}
             </Dropdown.Item>
           );
         })}
