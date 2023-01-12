@@ -6,8 +6,8 @@ const instance = axios.create({
 });
 instance.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
 
-export const fetchReviews = (category) => {
-  return instance.get(`/reviews`,  {params: { category: category }, } ).then((res) => {
+export const fetchReviews = (category, sortBy, orderBy) => {
+  return instance.get(`/reviews`,  {params: { category: category, sort_by: sortBy, order_by: orderBy }, } ).then((res) => {
     return res.data.reviews;
   });
 };
