@@ -1,12 +1,13 @@
 import axios from "axios";
 
+
 const instance = axios.create({
   baseURL: "https://sg-nc-games.onrender.com/api",
 });
 instance.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
 
-export const fetchReviews = () => {
-  return instance.get(`/reviews`).then((res) => {
+export const fetchReviews = (category) => {
+  return instance.get(`/reviews`,  {params: { category: category }, } ).then((res) => {
     return res.data.reviews;
   });
 };
