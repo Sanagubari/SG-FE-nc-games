@@ -48,3 +48,15 @@ export const postComment = (comment, username, reviewId) => {
       return res.data.comments;
     });
 };
+
+export const fetchUsers = () => {
+  return instance.get(`/users`).then((res) => {
+    return res.data.users;
+  });
+};
+
+export const deleteComment = (commentId) => {
+  return instance.delete(`/comments/${commentId}`).then((res) => {
+    return res.data
+  });
+};

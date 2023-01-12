@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import { fetchComments } from "../utils/api";
 import { Divider } from "@mui/material";
 import { CommentVotes } from "./CommentVotes";
+import { deleteComment } from "../utils/api";
+import { Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
-export const CommentCards = ({ reviewId }) => {
+export const CommentCards = ({ reviewId, user }) => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+
+  const isLoggedIn = user !== null;
 
   useEffect(() => {
     fetchComments(reviewId)
@@ -37,7 +44,6 @@ export const CommentCards = ({ reviewId }) => {
         let realDate = `${date[2]}/${date[1]}/${date[0]}`;
         return (
           <li key={comment.comment_id}>
-            
             <div id="comment-sub-info">
               <h4 className=" sub-info emphasise">@{comment.author}</h4>
               <p className=" sub-info">{realDate}</p>
@@ -45,7 +51,35 @@ export const CommentCards = ({ reviewId }) => {
             <p className="comment">"{comment.body}"</p>
 
             <CommentVotes votes={comment.votes} />
-            <Divider id='divider'/>
+            {isLoggedIn && user.username === comment.author ? (
+              <Button
+                disabled={isDeleting}
+                variant="dark button"
+                className="Read-More"
+                onClick={() => {
+                  setIsDeleting(true);
+                  deleteComment(comment.comment_id).then(setIsDeleting(false));
+                  setDeleted(true);
+                }}
+              >
+                {isDeleting ? "Deleting…" : "Delete"}
+              </Button>
+            ) : null}
+
+            {deleted ? (
+              <Alert
+                onClose={() => {
+                  setDeleted(false);
+                }}
+                className="alert"
+                severity="success"
+              >
+                {" "}
+                Comment deleted{" "}
+              </Alert>
+            ) : null}
+
+            <Divider id="divider" />
           </li>
         );
       })}

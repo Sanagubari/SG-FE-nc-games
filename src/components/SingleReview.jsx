@@ -7,11 +7,12 @@ import { CommentCards } from "./CommentCards";
 import { Review } from "./Review";
 import { CircularProgress } from "@mui/material";
 
-export const SingleReview = () => {
+export const SingleReview = ({user}) => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState([]);
   let { review_id } = useParams();
+  const isLoggedIn = user !== null
 
   useEffect(() => {
     fetchSingleReview(review_id)
@@ -45,8 +46,9 @@ export const SingleReview = () => {
       <h3 className="titles">Comments</h3>
 
       <WriteComment reviewId={review_id} />
+      {isLoggedIn ? <CommentCards reviewId={review_id} user={user}/> : null}
 
-      <CommentCards reviewId={review_id} />
+      
     </main>
   );
 };
