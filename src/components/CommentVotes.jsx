@@ -2,13 +2,13 @@ import { Button } from "react-bootstrap";
 
 export const CommentVotes = ({ votes }) => {
   return (
-    <div >
-      <p >Total votes: <b className="emphasise">{votes}</b></p>
-      <Button className="vote-button" variant="light">
-        Down Vote
+    <div className="comment-vote">
+      <p className="sub-info">{votes}</p>
+      <Button className="comment-vote-button" variant="light">
+        👎
       </Button>{" "}
-      <Button className="vote-button" variant="dark">
-        Up Vote
+      <Button className="comment-vote-button" variant="dark">
+        👍
       </Button>
     </div>
   );

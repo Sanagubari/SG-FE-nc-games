@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchComments } from "../utils/api";
-
+import { Divider } from "@mui/material";
 import { CommentVotes } from "./CommentVotes";
 
 export const CommentCards = ({ reviewId }) => {
@@ -18,7 +18,7 @@ export const CommentCards = ({ reviewId }) => {
         setIsError(true);
         setIsLoading(false);
       });
-  }, [reviewId]);
+  }, [reviewId, comments]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -34,13 +34,18 @@ export const CommentCards = ({ reviewId }) => {
           .replace(/-/g, " ")
           .split(" ");
 
-        let realDate = `${date[2]} ${date[1]} ${date[0]}`;
+        let realDate = `${date[2]}/${date[1]}/${date[0]}`;
         return (
           <li key={comment.comment_id}>
-            <p>{comment.body}</p>
-            <h4>{comment.author}</h4>
-            <p>{realDate}</p>
+            
+            <div id="comment-sub-info">
+              <h4 className=" sub-info emphasise">@{comment.author}</h4>
+              <p className=" sub-info">{realDate}</p>
+            </div>
+            <p className="comment">"{comment.body}"</p>
+
             <CommentVotes votes={comment.votes} />
+            <Divider id='divider'/>
           </li>
         );
       })}
