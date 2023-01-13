@@ -7,18 +7,19 @@ import { CommentCards } from "./CommentCards";
 import { Review } from "./Review";
 import { CircularProgress } from "@mui/material";
 import { Alert } from "@mui/material";
+import { AlertTitle } from "@mui/material";
 import { UserContext } from "../contexts/User";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 export const SingleReview = () => {
-  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState([]);
   const [deleted, setDeleted] = useState(false);
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, isError, setIsError } = useContext(UserContext);
   const [comments, setComments] = useState([]);
+  const [error, setError] = useState();
 
   let { review_id } = useParams();
 
@@ -31,6 +32,7 @@ export const SingleReview = () => {
       .catch((err) => {
         setIsError(true);
         setIsLoading(false);
+        setError(err.response);
       });
   }, [review_id]);
 
@@ -38,7 +40,24 @@ export const SingleReview = () => {
     return <CircularProgress className="loading" />;
   }
   if (isError) {
-    return <p>Error</p>;
+    return (
+      <Alert severity="error">
+        {" "}
+        <AlertTitle>
+          <strong>{error.status}</strong>
+        </AlertTitle>
+        {error.data.msg}
+        <Link to="/">
+          <Button
+            onClick={() => {
+              setIsError(false);
+            }}
+          >
+            Go Back
+          </Button>
+        </Link>
+      </Alert>
+    );
   }
 
   return (
