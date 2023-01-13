@@ -1,15 +1,16 @@
 import axios from "axios";
 
-
 const instance = axios.create({
   baseURL: "https://sg-nc-games.onrender.com/api",
 });
 instance.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
 
 export const fetchReviews = (category) => {
-  return instance.get(`/reviews`,  {params: { category: category }, } ).then((res) => {
-    return res.data.reviews;
-  });
+  return instance
+    .get(`/reviews`, { params: { category: category } })
+    .then((res) => {
+      return res.data.reviews;
+    });
 };
 
 export const fetchCategories = () => {
@@ -45,7 +46,7 @@ export const postComment = (comment, username, reviewId) => {
       body: comment,
     })
     .then((res) => {
-      return res.data.comments;
+      return res.data.newComment;
     });
 };
 
@@ -57,6 +58,14 @@ export const fetchUsers = () => {
 
 export const deleteComment = (commentId) => {
   return instance.delete(`/comments/${commentId}`).then((res) => {
-    return res.data
+    return res.data;
   });
+};
+
+export const patchVoteByCommentId = (commentId, votes) => {
+  return instance
+    .patch(`/comments/${commentId}`, { inc_votes: votes })
+    .then((res) => {
+      return res.data.comment;
+    });
 };

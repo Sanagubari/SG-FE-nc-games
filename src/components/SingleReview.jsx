@@ -6,13 +6,21 @@ import { WriteComment } from "./WriteComment";
 import { CommentCards } from "./CommentCards";
 import { Review } from "./Review";
 import { CircularProgress } from "@mui/material";
+import { Alert } from "@mui/material";
+import { UserContext } from "../contexts/User";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
-export const SingleReview = ({user}) => {
+export const SingleReview = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState([]);
+  const [deleted, setDeleted] = useState(false);
+  const { isLoggedIn } = useContext(UserContext);
+  const [comments, setComments] = useState([]);
+
   let { review_id } = useParams();
-  const isLoggedIn = user !== null
 
   useEffect(() => {
     fetchSingleReview(review_id)
@@ -27,7 +35,7 @@ export const SingleReview = ({user}) => {
   }, [review_id]);
 
   if (isLoading) {
-    return <CircularProgress className="loading"/>;
+    return <CircularProgress className="loading" />;
   }
   if (isError) {
     return <p>Error</p>;
@@ -44,11 +52,39 @@ export const SingleReview = ({user}) => {
       />
 
       <h3 className="titles">Comments</h3>
+      {isLoggedIn ? (
+        <WriteComment
+          reviewId={review_id}
+          comments={comments}
+          setComments={setComments}
+        />
+      ) : (
+        <div className="box">
+          <p className="question">What are your thoughts?</p>{" "}
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link>
+        </div>
+      )}
 
-      <WriteComment reviewId={review_id} />
-      {isLoggedIn ? <CommentCards reviewId={review_id} user={user}/> : null}
-
-      
+      {deleted ? (
+        <Alert
+          onClose={() => {
+            setDeleted(false);
+          }}
+          className="alert"
+          severity="success"
+        >
+          {" "}
+          Comment deleted{" "}
+        </Alert>
+      ) : null}
+      <CommentCards
+        reviewId={review_id}
+        setDeleted={setDeleted}
+        comments={comments}
+        setComments={setComments}
+      />
     </main>
   );
 };

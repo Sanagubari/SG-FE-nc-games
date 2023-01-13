@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 export const CategoryBar = ({ setCategoryChosen, setSearchParams, searchParams }) => {
   const [categories, setCategories] = useState([]);
 
-  // let [searchParams, setSearchParams] = useSearchParams();
+
 
   const setCategory = (category) => {
     const newParams = new URLSearchParams(searchParams);

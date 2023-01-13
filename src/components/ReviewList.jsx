@@ -5,16 +5,20 @@ import { ReviewCard } from "./ReviewCard";
 import { useSearchParams } from "react-router-dom";
 import { Alert } from "@mui/material";
 import { AlertTitle } from "@mui/material";
+import { UserContext } from "../contexts/User";
+import { useContext } from "react";
 
 export const ReviewList = ({ setCategoryChosen }) => {
-  const [isError, setIsError] = useState(false);
+  const { isError, setIsError } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState();
 
   const categoryQuery = searchParams.get("category");
 
   useEffect(() => {
+    setIsError(false);
     setIsLoading(true);
     fetchReviews(categoryQuery)
       .then((allReviews) => {
@@ -24,6 +28,7 @@ export const ReviewList = ({ setCategoryChosen }) => {
       .catch((err) => {
         setIsError(true);
         setIsLoading(false);
+        setError(err.response);
       });
   }, [searchParams]);
 
@@ -35,9 +40,9 @@ export const ReviewList = ({ setCategoryChosen }) => {
       <Alert severity="error">
         {" "}
         <AlertTitle>
-          <strong>404</strong>
+          <strong>{error.status}</strong>
         </AlertTitle>
-        Something went wrong
+        {error.data.msg}
       </Alert>
     );
   }

@@ -3,22 +3,26 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { postComment } from "../utils/api";
 import { Alert } from "@mui/material";
+import { UserContext } from "../contexts/User";
+import { useContext } from "react";
 
-export const WriteComment = ({ reviewId }) => {
+export const WriteComment = ({ reviewId, comments, setComments }) => {
   const [newComment, setNewComment] = useState("");
   const [success, setSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isPosted, setIsPosted] = useState(true);
+  const { userLogged } = useContext(UserContext);
 
   const handleSubmit = (event) => {
     setIsPosted(false);
     event.preventDefault();
-    postComment(newComment, "jessjelly", reviewId)
-      .then(() => {
+    postComment(newComment, userLogged.username, reviewId)
+      .then((newComment) => {
         setNewComment("");
         setSuccess(true);
         setIsError(false);
         setIsPosted(true);
+        setComments((currComments) => [newComment, ...currComments]);
       })
       .catch((err) => {
         setIsError(true);
