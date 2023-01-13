@@ -31,7 +31,7 @@ export const CommentCards = ({
         setIsError(true);
         setIsLoading(false);
       });
-  }, [reviewId]);
+  }, [reviewId, isDeleting]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -62,7 +62,7 @@ export const CommentCards = ({
               commentId={comment.comment_id}
             />
 
-            {isLoggedIn && userLogged === comment.author ? (
+            {isLoggedIn && userLogged.username === comment.author ? (
               <Button
                 disabled={isDeleting}
                 variant="dark button"
