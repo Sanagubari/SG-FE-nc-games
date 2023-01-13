@@ -11,8 +11,11 @@ export const ReviewCard = (review) => {
         className="reviewPic"
       />
       <h3>{review.title}</h3>
-      {/* <Avatar sx={{ width: 24, height: 24 }}>H</Avatar> */}
+    
+
       <p className="author">By {review.owner}</p>
+      <p>Comments: {review.comment_count}</p>
+      <p>Votes: {review.votes}</p>
       <Link to={`/games/${review.review_id}`}>
         <Button variant="dark button" className="Read-More">
           Read More

@@ -3,16 +3,24 @@ import { fetchReviews } from "../utils/api";
 import { ReviewCard } from "./ReviewCard";
 import { useSearchParams } from "react-router-dom";
 
-export const ReviewList = ({ setIsError }) => {
+import { Alert } from "@mui/material";
+import { AlertTitle } from "@mui/material";
+import { UserContext } from "../contexts/User";
+import { useContext } from "react";
+
+export const ReviewList = () => {
+  const { isError, setIsError } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState();
 
   const categoryQuery = searchParams.get("category");
   const sortByQuery = searchParams.get("sort_by");
   const orderByQuery = searchParams.get("order_by");
 
   useEffect(() => {
+    setIsError(false);
     setIsLoading(true);
     fetchReviews(categoryQuery, sortByQuery, orderByQuery)
       .then((allReviews) => {
@@ -23,12 +31,26 @@ export const ReviewList = ({ setIsError }) => {
       .catch((err) => {
         setIsError(true);
         setIsLoading(false);
+        setError(err.response);
       });
   }, [searchParams]);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
+  if (isError) {
+    return (
+      <Alert severity="error">
+        {" "}
+        <AlertTitle>
+          <strong>{error.status}</strong>
+        </AlertTitle>
+        {error.data.msg}
+      </Alert>
+    );
+  }
+
 
   return (
     <div>
