@@ -3,9 +3,15 @@ import { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSearchParams } from "react-router-dom";
 
-export const CategoryBar = ({ setCategoryChosen, setSearchParams, searchParams }) => {
+export const CategoryBar = () => {
   const [categories, setCategories] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [categoryChosen, setCategoryChosen] = useState();
 
+
+
+
+  const categoryQuery = searchParams.get("category");
 
 
   const setCategory = (category) => {
@@ -13,7 +19,13 @@ export const CategoryBar = ({ setCategoryChosen, setSearchParams, searchParams }
 
     newParams.set("category", category);
     setSearchParams(newParams);
-    
+  };
+
+  const removeCategory = () => {
+    const newParams = new URLSearchParams(searchParams);
+
+    newParams.delete("category");
+    setSearchParams(newParams);
   };
 
   useEffect(() => {
@@ -27,14 +39,16 @@ export const CategoryBar = ({ setCategoryChosen, setSearchParams, searchParams }
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Category
+        {categoryQuery && categoryQuery === categoryChosen
+          ? categoryQuery.charAt(0).toUpperCase() +
+            categoryQuery.slice(1).replace(/-/g, " ")
+          : "Category"}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
         <Dropdown.Item
           onClick={() => {
-            setSearchParams();
-            setCategoryChosen(null);
+            removeCategory();
           }}
         >
           All
@@ -48,8 +62,8 @@ export const CategoryBar = ({ setCategoryChosen, setSearchParams, searchParams }
             <Dropdown.Item
               key={category.slug}
               onClick={() => {
-                setCategory(category.slug);
                 setCategoryChosen(category.slug);
+                setCategory(category.slug);
               }}
             >
               {categoryName}
