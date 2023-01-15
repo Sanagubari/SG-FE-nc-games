@@ -38,7 +38,7 @@ export const LoginPage = () => {
   }
   return (
     <main>
-      <h2 className="list-title"> Select User</h2>
+      <h2 className="list-title user-title"> Select User</h2>
       <ul className="cardList">
         {users.map((user) => {
           return <UserCard key={user.username} {...user} />;

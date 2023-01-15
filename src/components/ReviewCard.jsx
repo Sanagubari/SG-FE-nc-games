@@ -8,13 +8,12 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-// import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export const ReviewCard = (review) => {
   return (
-    <li >
-      <Card sx={{ width: 345}} className="review-card"  >
+    <li>
+      <Card sx={{ width: 345 }} className="review-card">
         <CardMedia
           sx={{ height: 240 }}
           image={review.review_img_url}

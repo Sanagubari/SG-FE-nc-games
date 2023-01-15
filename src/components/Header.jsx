@@ -5,14 +5,8 @@ import { useContext } from "react";
 import { Avatar } from "@mui/material";
 
 export const Header = () => {
-  const {
-    userLogged,
-    setUserLogged,
-    isLoggedIn,
-    setIsLoggedIn,
-    isError,
-    setIsError,
-  } = useContext(UserContext);
+  const { userLogged, setUserLogged, isLoggedIn, setIsLoggedIn, setIsError } =
+    useContext(UserContext);
 
   return (
     <header className="header">
@@ -28,30 +22,28 @@ export const Header = () => {
       ) : null}
 
       {isLoggedIn ? (
-        <Button
-          variant="dark button"
-          className="header-content "
-          onClick={() => {
-            setUserLogged(null);
-            setIsLoggedIn(false);
-          }}
-        >
-          Logout
-        </Button>
-      ) : null}
-
-      {isLoggedIn ? (
-        <div>
+        <div className="Logged-in-user">
           <Avatar
             src={userLogged.avatar_url}
             alt={`${userLogged.username} profile picture`}
-            sx={{ width: 24, height: 24 }}
+            sx={{ width: 23, height: 23 }}
           ></Avatar>
 
           <p className="white-text">
             {" "}
-            Logged in as <b className="strong">@{userLogged.username}</b>
+            <b>@</b>
+            {userLogged.username}
           </p>
+          <Button
+            variant="dark button"
+            className="header-content Logout-button "
+            onClick={() => {
+              setUserLogged(null);
+              setIsLoggedIn(false);
+            }}
+          >
+            Logout
+          </Button>
         </div>
       ) : null}
     </header>

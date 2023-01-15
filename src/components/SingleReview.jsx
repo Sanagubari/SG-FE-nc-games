@@ -12,6 +12,7 @@ import { UserContext } from "../contexts/User";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { Divider } from "@mui/material";
 
 export const SingleReview = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -70,7 +71,9 @@ export const SingleReview = () => {
         reviewId={review_id}
       />
 
-      <h3 className="titles">Comments</h3>
+      <Divider id="title-divider" />
+
+      <h3 className="comment-title">Comments</h3>
       {isLoggedIn ? (
         <WriteComment
           reviewId={review_id}

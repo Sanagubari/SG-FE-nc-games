@@ -6,7 +6,7 @@ import { useContext } from "react";
 // import { Avatar } from "@mui/material";
 
 export const UserCard = (user) => {
-  const { userLogged, setUserLogged, isLoggedIn, setIsLoggedIn} =
+  const {  setUserLogged, setIsLoggedIn} =
     useContext(UserContext);
 
   return (
@@ -14,12 +14,12 @@ export const UserCard = (user) => {
       <img src={user.avatar_url} alt={`${user.name}`} className="reviewPic" />
       <h3>{user.name}</h3>
 
-      <p className="author">@{user.username}</p>
+      <p className="user">@{user.username}</p>
 
       <Link to={"/"}>
         <Button
           variant="dark button"
-          className="Read-More"
+          className="Login-button"
           onClick={() => {
             setUserLogged(user);
             setIsLoggedIn(true);

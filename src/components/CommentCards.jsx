@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { UserContext } from "../contexts/User";
 import { useContext } from "react";
 
+
 export const CommentCards = ({
   reviewId,
   setDeleted,
@@ -49,19 +50,18 @@ export const CommentCards = ({
 
         let realDate = `${date[2]}/${date[1]}/${date[0]}`;
         return (
-          <li key={comment.comment_id}>
+          <li key={comment.comment_id} className="comment-list-item">
             <div id="comment-sub-info">
-              <h4 className=" sub-info emphasise">@{comment.author}</h4>
+              <h4 className="emphasise">@{comment.author}</h4>
               <p className=" sub-info">{realDate}</p>
             </div>
-
             <p className="comment">"{comment.body}"</p>
-
+           
             <CommentVotes
+            className="comment-vote-buttons"
               votes={comment.votes}
               commentId={comment.comment_id}
             />
-
             {isLoggedIn && userLogged.username === comment.author ? (
               <Button
                 disabled={isDeleting}
@@ -78,7 +78,6 @@ export const CommentCards = ({
                 {isDeleting ? "Deleting…" : "Delete"}
               </Button>
             ) : null}
-
             <Divider id="divider" />
           </li>
         );
