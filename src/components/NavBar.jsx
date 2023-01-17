@@ -22,7 +22,7 @@ export const NavBar = () => {
             setSearchParams();
           }}
         >
-          Reset Filters
+          Reset
         </Button>
       ) : null}
     </nav>

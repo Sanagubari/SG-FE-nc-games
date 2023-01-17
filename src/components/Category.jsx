@@ -8,11 +8,7 @@ export const CategoryBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [categoryChosen, setCategoryChosen] = useState();
 
-
-
-
   const categoryQuery = searchParams.get("category");
-
 
   const setCategory = (category) => {
     const newParams = new URLSearchParams(searchParams);

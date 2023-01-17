@@ -110,12 +110,7 @@ export const CommentVotes = ({ votes, commentId }) => {
         )}
       </div>
 
-      {hasVoted && isLoggedIn ? (
-        <Alert className="alert" severity="success">
-          {" "}
-          Thanks for Voting{" "}
-        </Alert>
-      ) : null}
+
       
     </section>
   );

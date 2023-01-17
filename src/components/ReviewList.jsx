@@ -35,20 +35,8 @@ export const ReviewList = () => {
       });
   }, [searchParams]);
 
-  // if (isError && orderByQuery === undefined ) {
-  //   return (
-  //     <Alert severity="error">
-  //       {" "}
-  //       <AlertTitle>
-  //         <strong>400</strong>
-  //       </AlertTitle>
-  //       Cannot Order by this
-  //     </Alert>
-  //   );
-  // }
-
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="loading">Loading...</p>;
   }
 
   if (isError) {
@@ -62,7 +50,6 @@ export const ReviewList = () => {
       </Alert>
     );
   }
-
 
   return (
     <div>

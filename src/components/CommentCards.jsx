@@ -7,7 +7,6 @@ import { Button } from "react-bootstrap";
 import { UserContext } from "../contexts/User";
 import { useContext } from "react";
 
-
 export const CommentCards = ({
   reviewId,
   setDeleted,
@@ -53,31 +52,37 @@ export const CommentCards = ({
           <li key={comment.comment_id} className="comment-list-item">
             <div id="comment-sub-info">
               <h4 className="emphasise">@{comment.author}</h4>
+
               <p className=" sub-info">{realDate}</p>
             </div>
+
             <p className="comment">"{comment.body}"</p>
-           
+
             <CommentVotes
-            className="comment-vote-buttons"
+              className="comment-vote-buttons"
               votes={comment.votes}
               commentId={comment.comment_id}
             />
+            {/*ternary to display delete button if that author is logged in.*/}
             {isLoggedIn && userLogged.username === comment.author ? (
-              <Button
-                disabled={isDeleting}
-                variant="dark button"
-                className="Read-More"
-                onClick={() => {
-                  setIsDeleting(true);
-                  deleteComment(comment.comment_id).then(() => {
-                    setIsDeleting(false);
-                    setDeleted(true);
-                  });
-                }}
-              >
-                {isDeleting ? "Deleting…" : "Delete"}
-              </Button>
+              <div className="delete-button">
+                <Button
+                  disabled={isDeleting}
+                  variant="light"
+                  className="delete-button"
+                  onClick={() => {
+                    setIsDeleting(true);
+                    deleteComment(comment.comment_id).then(() => {
+                      setIsDeleting(false);
+                      setDeleted(true);
+                    });
+                  }}
+                >
+                  {isDeleting ? "Deleting…" : "Delete"}
+                </Button>{" "}
+              </div>
             ) : null}
+
             <Divider id="divider" />
           </li>
         );

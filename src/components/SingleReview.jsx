@@ -38,7 +38,7 @@ export const SingleReview = () => {
   }, [review_id]);
 
   if (isLoading) {
-    return <CircularProgress className="loading" />;
+    return <p> Loading... </p>;
   }
   if (isError) {
     return (
