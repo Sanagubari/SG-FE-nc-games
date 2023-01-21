@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { fetchReviews } from "../utils/api";
 import { ReviewCard } from "./ReviewCard";
 import { useSearchParams } from "react-router-dom";
-
 import { Alert } from "@mui/material";
 import { AlertTitle } from "@mui/material";
 import { UserContext } from "../contexts/User";
 import { useContext } from "react";
+import { ReviewsContext } from "../contexts/Reviews";
 
 export const ReviewList = () => {
   const { isError, setIsError } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [reviews, setReviews] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [error, setError] = useState();
+  const { reviews, setReviews } = useContext(ReviewsContext);
 
   const categoryQuery = searchParams.get("category");
   const sortByQuery = searchParams.get("sort_by");
@@ -44,9 +44,9 @@ export const ReviewList = () => {
       <Alert severity="error">
         {" "}
         <AlertTitle>
-          <strong>{error.status}</strong>
+          <strong>{error}</strong>
         </AlertTitle>
-        {error.data.msg}
+        {error}
       </Alert>
     );
   }

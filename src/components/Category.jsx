@@ -2,9 +2,12 @@ import { fetchCategories } from "../utils/api";
 import { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSearchParams } from "react-router-dom";
+import { useContext } from "react";
+import { CategoriesContext } from "../contexts/Categories";
 
 export const CategoryBar = () => {
-  const [categories, setCategories] = useState([]);
+  const { categories, setCategories, catIsLoading, setCatIsLoading } =
+    useContext(CategoriesContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [categoryChosen, setCategoryChosen] = useState();
 
@@ -27,6 +30,7 @@ export const CategoryBar = () => {
   useEffect(() => {
     fetchCategories()
       .then((categories) => {
+        setCatIsLoading(false);
         setCategories(categories);
       })
       .catch((err) => {});
@@ -47,7 +51,7 @@ export const CategoryBar = () => {
             removeCategory();
           }}
         >
-          All
+          {catIsLoading ? "Loading..." : "All"}
         </Dropdown.Item>
 
         {categories.map((category) => {

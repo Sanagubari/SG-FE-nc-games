@@ -5,12 +5,14 @@ const instance = axios.create({
 });
 instance.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
 
-
 export const fetchReviews = (category, sortBy, orderBy) => {
-  return instance.get(`/reviews`,  {params: { category: category, sort_by: sortBy, order_by: orderBy }, } ).then((res) => {
-    return res.data.reviews;
-  });
-
+  return instance
+    .get(`/reviews`, {
+      params: { category: category, sort_by: sortBy, order_by: orderBy },
+    })
+    .then((res) => {
+      return res.data.reviews;
+    });
 };
 
 export const fetchCategories = () => {
@@ -67,5 +69,19 @@ export const patchVoteByCommentId = (commentId, votes) => {
     .patch(`/comments/${commentId}`, { inc_votes: votes })
     .then((res) => {
       return res.data.comment;
+    });
+};
+
+export const postReview = (username, title, body, designer, category) => {
+  return instance
+    .post(`/reviews`, {
+      owner: username,
+      title: title,
+      review_body: body,
+      designer: designer,
+      category: category,
+    })
+    .then((res) => {
+      return res.data.newReview;
     });
 };

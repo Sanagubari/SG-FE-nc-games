@@ -20,6 +20,7 @@ export const CommentCards = ({
   const { userLogged, isLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
+    setDeleted(false);
     setIsLoading(true);
     setIsError(false);
     fetchComments(reviewId)
@@ -31,7 +32,22 @@ export const CommentCards = ({
         setIsError(true);
         setIsLoading(false);
       });
-  }, [reviewId, isDeleting]);
+  }, [reviewId]);
+
+  function handleDelete(commentId) {
+    if (window.confirm("Are you sure you want to delete this comment?")) {
+      setIsDeleting(true);
+      deleteComment(commentId).then(() => {
+        setComments((currComments) => {
+          return currComments.filter((comm) => {
+            return comm.comment_id !== commentId;
+          });
+        });
+        setIsDeleting(false);
+        setDeleted(true);
+      });
+    }
+  }
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -70,13 +86,7 @@ export const CommentCards = ({
                   disabled={isDeleting}
                   variant="light"
                   className="delete-button"
-                  onClick={() => {
-                    setIsDeleting(true);
-                    deleteComment(comment.comment_id).then(() => {
-                      setIsDeleting(false);
-                      setDeleted(true);
-                    });
-                  }}
+                  onClick={() => handleDelete(comment.comment_id)}
                 >
                   {isDeleting ? "Deleting…" : "Delete"}
                 </Button>{" "}

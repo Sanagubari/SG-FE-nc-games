@@ -8,7 +8,7 @@ import { Alert } from "@mui/material";
 
 export const Votes = ({ votes, reviewId }) => {
   const [voteChange, setVoteChange] = useState(0);
-  const { userLogged, isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn } = useContext(UserContext);
   const [hasVoted, setHasVoted] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isDownVoted, setIsDownVoted] = useState(false);

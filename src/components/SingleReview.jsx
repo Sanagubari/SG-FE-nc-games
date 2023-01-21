@@ -5,7 +5,6 @@ import { Votes } from "./Votes";
 import { WriteComment } from "./WriteComment";
 import { CommentCards } from "./CommentCards";
 import { Review } from "./Review";
-import { CircularProgress } from "@mui/material";
 import { Alert } from "@mui/material";
 import { AlertTitle } from "@mui/material";
 import { UserContext } from "../contexts/User";
@@ -50,6 +49,7 @@ export const SingleReview = () => {
         {error.data.msg}
         <Link to="/">
           <Button
+            className="error-button"
             onClick={() => {
               setIsError(false);
             }}
@@ -106,6 +106,7 @@ export const SingleReview = () => {
         setDeleted={setDeleted}
         comments={comments}
         setComments={setComments}
+        deleted={deleted}
       />
     </main>
   );

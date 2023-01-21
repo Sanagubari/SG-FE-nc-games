@@ -3,10 +3,29 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/User";
 import { useContext } from "react";
 import { Avatar } from "@mui/material";
+import styled from "styled-components";
+
+const Paragraph = styled.p`
+  @media (min-width: 600px) {
+    display: block;
+  }
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
 
 export const Header = () => {
   const { userLogged, setUserLogged, isLoggedIn, setIsLoggedIn, setIsError } =
     useContext(UserContext);
+
+  function handleLogout() {
+    if (window.confirm("Are you sure you want to logout?")) {
+      {
+        setUserLogged(null);
+        setIsLoggedIn(false);
+      }
+    }
+  }
 
   return (
     <header className="header">
@@ -29,21 +48,21 @@ export const Header = () => {
             sx={{ width: 23, height: 23 }}
           ></Avatar>
 
-          <p className="white-text">
+          <Paragraph className="white-text">
             {" "}
             <b>@</b>
             {userLogged.username}
-          </p>
-          <Button
-            variant="dark button"
-            className="header-content Logout-button "
-            onClick={() => {
-              setUserLogged(null);
-              setIsLoggedIn(false);
-            }}
-          >
-            Logout
-          </Button>
+          </Paragraph>
+
+          <Link to="/" className="Link">
+            <Button
+              variant="dark button"
+              className="header-content Logout-button "
+              onClick={() => handleLogout()}
+            >
+              Logout
+            </Button>
+          </Link>
         </div>
       ) : null}
     </header>
