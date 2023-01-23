@@ -41,12 +41,12 @@ export const ReviewList = () => {
 
   if (isError) {
     return (
-      <Alert severity="error">
+      <Alert severity="error" className="errors">
         {" "}
         <AlertTitle>
-          <strong>{error}</strong>
+          <strong>{error.status}</strong>
         </AlertTitle>
-        {error}
+        {error.data.msg}
       </Alert>
     );
   }

@@ -1,8 +1,11 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { fetchReviews } from "../utils/api";
 
 export const OrderBy = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   const orderByQuery = searchParams.get("order_by");
 
@@ -12,6 +15,15 @@ export const OrderBy = () => {
     newParams.set("order_by", orderByQuery);
     setSearchParams(newParams);
   };
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchReviews()
+      .then((reviews) => {
+        setIsLoading(false);
+      })
+      .catch((err) => {});
+  }, []);
 
   return (
     <Dropdown>

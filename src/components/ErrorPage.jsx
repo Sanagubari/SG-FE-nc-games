@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 
 export const ErrorPage = () => {
   return (
-    <Alert severity="error">
+    <Alert severity="error" className="errors">
       {" "}
       <AlertTitle>
         <strong>404</strong>

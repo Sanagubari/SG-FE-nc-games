@@ -616,6 +616,13 @@ div.css-1mktp8m-MuiTypography-root {
   border-color: none;
 }
 
+.errors {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
 /* ------------------------ SingleReview---------------------- */
 
 @media screen and (max-width: 360px) {
