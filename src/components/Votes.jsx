@@ -1,8 +1,7 @@
 import { Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { patchVoteByReviewID } from "../utils/api";
 import { UserContext } from "../contexts/User";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Alert } from "@mui/material";
 

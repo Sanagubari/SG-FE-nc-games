@@ -1,8 +1,7 @@
 import { fetchCategories } from "../utils/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSearchParams } from "react-router-dom";
-import { useContext } from "react";
 import { CategoriesContext } from "../contexts/Categories";
 
 export const CategoryBar = () => {
@@ -15,14 +14,12 @@ export const CategoryBar = () => {
 
   const setCategory = (category) => {
     const newParams = new URLSearchParams(searchParams);
-
     newParams.set("category", category);
     setSearchParams(newParams);
   };
 
   const removeCategory = () => {
     const newParams = new URLSearchParams(searchParams);
-
     newParams.delete("category");
     setSearchParams(newParams);
   };

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/User";
 import { useContext } from "react";
 
-export const ReviewPage = ({ setCategoryChosen }) => {
+export const ReviewPage = () => {
   const { isLoggedIn } = useContext(UserContext);
 
   return (
@@ -16,7 +16,7 @@ export const ReviewPage = ({ setCategoryChosen }) => {
         </Link>
       ) : null}
 
-      <NavBar setCategoryChosen={setCategoryChosen} />
+      <NavBar />
       <ReviewList />
     </main>
   );

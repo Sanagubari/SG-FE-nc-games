@@ -9,7 +9,6 @@ export const NavBar = () => {
 
   const currentParams = [...searchParams];
 
-
   return (
     <nav className="Nav">
       <CategoryBar className="Dropdown" />
